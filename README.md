@@ -1,4 +1,6 @@
-<center>![alt text](images/app_logo.png)</center>
+<div align="center">
+  <img src="images/app_logo.png" alt="Alt Text" />
+</div>
 
 ## Table of Contents
 1. [**Project Overview**](https://github.com/baclausen/final_project?tab=readme-ov-file#project-overview)
