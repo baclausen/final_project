@@ -249,7 +249,7 @@ for name, model in all_models.items():
 
     # Save model
     # os.makedirs('ml_models', exist_ok=True)
-    filename = f'{name.lower().replace(" ", "_")}.pkl'
+    filename = f'{name.lower().replace(" ", "_")}.joblib'
     model_path = os.path.join(script_dir, filename)
     
     joblib.dump({'model': model, 'metadata': metadata}, model_path)

@@ -1,12 +1,12 @@
 streamlit
 numpy
 pandas
-joblib
+joblib==1.3.2
 seaborn
 matplotlib
 Pillow
-scikit-learn
-xgboost
-lightgbm
-catboost
+scikit-learn==1.6.1
+xgboost==2.0.3
+lightgbm==4.3.0
+catboost==1.2.3
 mgrs

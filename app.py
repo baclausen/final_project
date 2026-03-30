@@ -99,32 +99,42 @@ def load_and_clean_data(path):
 
 @st.cache_resource
 def load_models():
-    base_path = 'ml_models/'
-    # Map the display name to the actual filename
+    # This gets the folder where app.py lives (/mount/src/final_project/)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # This specifically points to the ml_models subfolder
+    base_path = os.path.join(base_dir, 'ml_models')
+    
     model_files = {
         "Logistic Regression": 'logistic_regression.pkl',
         "Decision Tree": 'decision_tree.pkl',
         "Random Forest": 'random_forest.pkl',
         "XG Boosting": 'xgboost.pkl',
         "LightGBM": 'lightgbm.pkl',
-        "CatBoost": 'catboost.pkl'}
+        "CatBoost": 'catboost.pkl'
+    }
     
     model_description = {
-        "Logistic Regression": "estimates the probability of an outcome based on a linear combination of input features. Fast training and miniscule file size with a slight cost in accuracy.",
-        "Decision Tree": "partitions data with a flowchart to assign class labels or values. Solid accuracy, blazing speed and small file size make it a solid choice.",
-        "Random Forest": "improves accuracy using many Decision Trees, each trained on a random subset of the data. Amazing accuracy with a moderate training speed. File size is much larger.",
-        "XG Boosting": "strengthens predictions by training weaker models and correcting their errors. Decent accuracy, moderate speed and large file size.",
-        "LightGBM": "Gradient Boosting that uses techniques which handle large datasets more efficiently. Faster and smaller than XG Boost without a cost in accuracy.",
-        "CatBoost": "high-accuracy handling of categorical data to reduce overfitting compared to traditional boosting algorithms. Great accuracy, relatively small file size but slow to train."
+        "Logistic Regression": "estimates the probability of an outcome based on a linear combination of input features...",
+        "Decision Tree": "partitions data with a flowchart to assign class labels or values...",
+        "Random Forest": "improves accuracy using many Decision Trees...",
+        "XG Boosting": "strengthens predictions by training weaker models...",
+        "LightGBM": "Gradient Boosting that uses techniques which handle large datasets efficiently...",
+        "CatBoost": "high-accuracy handling of categorical data to reduce overfitting..."
     }
 
     loaded_models = {}
     
     for display_name, file_name in model_files.items():
-        full_path = os.path.join(base_path, file_name)    
+        full_path = os.path.join(base_path, file_name)
+        
+        # Load the bundle (model + metadata) from the .pkl file
         model_data = joblib.load(full_path)
+        
+        # Calculate size for the metadata display
         file_size = os.path.getsize(full_path) / 1024
         model_data['metadata']['file_size_kb'] = file_size
+        
         if display_name in model_description:
             model_data['metadata']['description'] = model_description[display_name]
         
