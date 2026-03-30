@@ -1,3 +1,0 @@
-libgeos-dev
-libproj-dev
-build-essential
