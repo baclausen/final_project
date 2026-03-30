@@ -25,6 +25,8 @@ from sklearn.metrics import log_loss, f1_score, accuracy_score, classification_r
 # Load and Clean Data
 # ---------------------------
 
+print(sklearn.__version__)
+
 print("Importing data...")
 
 script_dir = os.path.dirname(__file__) # Where current .py file is located
